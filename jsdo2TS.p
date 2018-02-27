@@ -41,7 +41,7 @@ define variable iField      as integer              no-undo.
 
 ompParser = new ObjectModelParser().
 //Parse JSDO file as a JsonObject
-joJSDO = cast(ompParser:ParseFile("c:\temp\TechProfilesJSDO.json"), JsonObject).
+joJSDO = cast(ompParser:ParseFile("<<path\filename.json>>"), JsonObject).
 
 //Get to the part where the various resources are defined (Business Entities)
 joServices = joJSDO:GetJsonArray("services"):GetJsonObject(1):GetJsonArray("resources").
@@ -74,7 +74,7 @@ do iService=1 to joServices:length:
     //empty the array for the next resource
     extent(arNames) = ?.
     //export the content of the temp-table to a TypeScript file
-    output to value("c:\temp\" + servicename + ".ts").
+    output to value("<<export_path>>" + servicename + ".ts").
         message "export class " + servicename + " " + CHR(123) skip.
         for each TypeScript:
             message "   public " + TypeScript.fieldname + ": " + TypeScript.Datatype + ";" skip.
